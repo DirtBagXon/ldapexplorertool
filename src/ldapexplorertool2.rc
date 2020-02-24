@@ -1,0 +1,6 @@
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+mondrian               ICON    DISCARDABLE     "xrc/ldapexplorertool.ico"
+
+#include <wx/msw/wx.rc>
