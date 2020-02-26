@@ -22,7 +22,6 @@
 
 BEGIN_EVENT_TABLE( Attribute_Add_Dlg, wxDialog )
 EVT_BUTTON( XRCID( "button_save" ), Attribute_Add_Dlg::OnSave )
-EVT_BUTTON( XRCID( "button_cancel" ), Attribute_Add_Dlg::OnCancel )
 
 END_EVENT_TABLE()
 
@@ -30,6 +29,8 @@ END_EVENT_TABLE()
 
 Attribute_Add_Dlg::Attribute_Add_Dlg( wxWindow* p_Parent, const wxString& p_Dn, const wxString& p_ObjectClass, SchemaUtil& p_Ldap )
 {
+	SetEscapeId( XRCID("button_cancel") );
+
 	int	Err ;
 	wxXmlResource::Get()->LoadDialog( this, p_Parent, wxT( "attribute_add" ) );
 	InitControls();

@@ -218,7 +218,7 @@ void SchemaDlg::OnAttributeSelected( wxCommandEvent& p_Event )
 	}
 	
 	ParentId = attributes_tree_ctrl->AppendItem( RootId, wxT("Syntax length") );
-	attributes_tree_ctrl->AppendItem( ParentId, wxString::Format( wxT("%ld"),theAtt->at_syntax_len) );
+	attributes_tree_ctrl->AppendItem( ParentId, wxString::Format( wxT("%d"),theAtt->at_syntax_len) );
 	
 	ParentId = attributes_tree_ctrl->AppendItem( RootId, wxT("Single valued") );
 	attributes_tree_ctrl->AppendItem( ParentId, ( theAtt->at_single_value==LDAP_SCHEMA_YES?wxT("yes"):wxT("no")));

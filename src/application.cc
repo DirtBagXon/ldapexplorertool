@@ -43,7 +43,7 @@ bool Application::OnInit()
 	wxCmdLineParser CmdParser( argc, argv );
 	
 	CmdParser.AddOption( wxT("c"), wxT("config-file"), wxT("Configuration file to load") );
-	CmdParser.AddOption( wxT("xrc"), wxT("xrc-file"), wxT("Interface definition file to load") );
+	CmdParser.AddOption( wxT("xrc"), wxT("xrc-dir"), wxT("Directory with Interface definition file to load") );
 
 	CmdParser.AddSwitch( wxT("h"), wxT("help"), wxT("Usage of LDAPExplorerTool") );
 

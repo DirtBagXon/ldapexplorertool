@@ -391,18 +391,18 @@ wxArrayString *p_Attributes, bool p_GetValues, u_short p_AttFlags, long p_Timeou
 			Attributes = Build_Attribute_Array( LDAP_ALL_OPERATIONAL_ATTRIBUTES, p_Attributes, NULL );
 		break;
 		case LF_ALL_OPERATIONAL :
-			Attributes = Build_Attribute_Array( LDAP_ALL_OPERATIONAL_ATTRIBUTES, NULL, LDAP_ALL_USER_ATTRIBUTES );
+			Attributes = Build_Attribute_Array( LDAP_ALL_OPERATIONAL_ATTRIBUTES, NULL, (char*)LDAP_ALL_USER_ATTRIBUTES );
 		break;
 		case LF_ALL :
 			Attributes = NULL ;
 		break;
 		case LF_NONE :
-			Attributes = Build_Attribute_Array( NULL, NULL, LDAP_NO_ATTRS );
+			Attributes = Build_Attribute_Array( NULL, NULL, (char *)LDAP_NO_ATTRS );
 		break;
 
 		default:
 			if( p_Attributes == NULL )
-				Attributes = Build_Attribute_Array( NULL, NULL, LDAP_NO_ATTRS );
+				Attributes = Build_Attribute_Array( NULL, NULL, (char *)LDAP_NO_ATTRS );
 			else
 				Attributes = Build_Attribute_Array( NULL, p_Attributes, NULL );
 		break;

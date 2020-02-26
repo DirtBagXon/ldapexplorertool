@@ -31,7 +31,6 @@ EVT_MENU(XRCID( "value_add" ), NewEntryDlg::OnAddValue )
 EVT_MENU(XRCID( "value_del" ), NewEntryDlg::OnDelValue )
 EVT_MENU(XRCID( "delete_attribute" ), NewEntryDlg::OnDeleteAttribute )
 EVT_BUTTON( XRCID( "button_save" ), NewEntryDlg::OnSave )
-EVT_BUTTON( XRCID( "button_cancel" ), NewEntryDlg::OnCancel )
 EVT_BUTTON( XRCID( "button_add" ), NewEntryDlg::OnManualAdd )
 
 END_EVENT_TABLE()
@@ -40,7 +39,7 @@ END_EVENT_TABLE()
 
 NewEntryDlg::NewEntryDlg( wxWindow* p_Parent, const wxString& p_ParentDn, SchemaUtil& p_Ldap ) 
 {
-	
+	SetEscapeId( XRCID("button_cancel") );
 	int	Err ;
 	wxXmlResource::Get()->LoadDialog( this, p_Parent, wxT( "entry_create" ) );
 	InitControls();

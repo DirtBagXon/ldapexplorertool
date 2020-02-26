@@ -19,7 +19,7 @@
 #include "ldapclass.h"
 #include "schema.h"
 
-wxChar* DEFAULT_SUBSCHEMASUBENTRY=wxT( "cn=subschema" );
+wxChar* DEFAULT_SUBSCHEMASUBENTRY=(wxChar*)wxT( "cn=subschema" );
 
 
 void SchemaUtil::SetConfig( const wxString& p_Name )
@@ -96,7 +96,7 @@ int SchemaUtil::FindSchemaEntry( const wxString& p_BaseDN )
 				LdapEntry Entry ;
 				if( !GetEntry( Id, 0, Entry ) )
 				{
-					::wxLogError( wxT( "FindSchemaEntry: %d - %s" ),m_Err, GetErrorStr().c_str() );
+					wxLogError( wxT( "FindSchemaEntry: %d - %s" ),m_Err, GetErrorStr().c_str() );
 				}
 				else
 				{
@@ -129,7 +129,7 @@ int SchemaUtil::FindSchemaEntry( const wxString& p_BaseDN )
 				LdapEntry Entry ;
 				if( !GetEntry( Id, 0, Entry ) )
 				{
-					::wxLogError( wxT( "FindSchemaEntry: %d - %s" ),m_Err, GetErrorStr().c_str() );
+					wxLogError( wxT( "FindSchemaEntry: %d - %s" ),m_Err, GetErrorStr().c_str() );
 				}
 				LdapAttribute *Attribute = Entry.GetAttribute( wxT( "subschemasubentry" ), true );
 				if( Attribute != NULL )
@@ -158,7 +158,7 @@ int SchemaUtil::FindSchemaEntry( const wxString& p_BaseDN )
 	NULL, true, LF_ALL_OPERATIONAL );
 	if( Ret != LDAP_SUCCESS )
 	{
-		::wxLogError( wxT( "FindSchemaEntry: %d - %s" ),m_Err, GetErrorStr().c_str() );
+		wxLogError( wxT( "FindSchemaEntry: %d - %s" ),m_Err, GetErrorStr().c_str() );
 		return Ret ;
 	}
 	return LDAP_SUCCESS ;
