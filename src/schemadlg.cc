@@ -20,7 +20,7 @@
 
 
 BEGIN_EVENT_TABLE( SchemaDlg, wxDialog )
-EVT_BUTTON(XRCID( "button_search" ), SchemaDlg::OnObjectClassSelected) 
+EVT_LISTBOX(XRCID( "objectclasses_listbox" ), SchemaDlg::OnObjectClassSelected) 
 EVT_LISTBOX(XRCID( "attributes_listbox" ), SchemaDlg::OnAttributeSelected) 
 END_EVENT_TABLE()
 /*

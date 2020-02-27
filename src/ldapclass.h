@@ -55,6 +55,8 @@ class LdapClass
 		
 		int	AddAttribute( LdapEntry& p_Entry );
 		int	DeleteAttribute( const wxString& p_Dn, const wxString& p_AttributeName );
+		int ModifyAttributeValue( const wxString& p_Dn, const wxString& p_AttributeName, const wxString& p_Value );
+		int ModifyAttributeValue( const wxString& p_Dn, const wxString& p_AttributeName, const berval& p_Value );
 		int AddAttributeValue( const wxString& p_Dn, const wxString& p_AttributeName, const wxString& p_Value );
 		int AddAttributeValue( const wxString& p_Dn, const wxString& p_AttributeName, const berval& p_Value );
 		int DeleteAttributeValue( const wxString& p_Dn, const wxString& p_AttributeName, const wxString& p_Value );

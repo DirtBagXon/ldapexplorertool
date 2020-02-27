@@ -918,32 +918,17 @@ void MainFrame::OnModifyValue( wxCommandEvent& WXUNUSED( p_Event ) )
 	data = ( LDAPItemData* )right_tree_ctrl->GetItemData( RootId ) ;
 	OldValue = right_tree_ctrl->GetItemText( Id );
 	
-	/*
-	OldEntry.SetDn( data->m_Value );
-	NewEntry.SetDn( data->m_Value );
-	*/
-	
-	NewValue = ::wxGetTextFromUser( _( "Enter a value for the item" ), Attribute , wxT( "" ) );
+	NewValue = ::wxGetTextFromUser( _( "Modify value for this item" ), Attribute , OldValue );
 	if( NewValue.Len() == 0 )
 	{
 		return ;
 	}
 	
-	/*
-	OldEntry.AddValue( Attribute, OldValue );
-	NewEntry.AddValue( Attribute, NewValue );
-	*/
-	Err = m_Ldap.AddAttributeValue( data->m_Value, Attribute, NewValue );
-	//Err = m_Ldap.AddAttributeValue( NewEntry );
+	Err = m_Ldap.ModifyAttributeValue( data->m_Value, Attribute, NewValue );
 	if( Err != LDAP_SUCCESS )
 	{
 		::wxMessageBox( m_Ldap.GetErrorStr(), _( "Error" ) );
 		return ;
-	}
-	Err = m_Ldap.DeleteAttributeValue( data->m_Value, Attribute, OldValue );
-	if( Err != LDAP_SUCCESS )
-	{
-		::wxMessageBox( m_Ldap.GetErrorStr(), _( "Error" ) );
 	}
 	Right_Display( data->m_Value );
 }

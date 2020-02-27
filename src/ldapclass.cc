@@ -643,6 +643,54 @@ int	LdapClass::DeleteAttribute( const wxString& p_Dn, const wxString& p_Attribut
 	return m_Err ;
 }
 
+int LdapClass::ModifyAttributeValue( const wxString& p_Dn, const wxString& p_AttributeName, const wxString& p_Value )
+{
+	LDAPMod 	Mod ;
+	LDAPMod* 	Mods[ 2 ] ;
+
+	Mod.mod_op = LDAP_MOD_REPLACE ;
+	Mod.mod_type = strdup( p_AttributeName.mb_str(wxConvUTF8) ) ;
+	Mod.mod_values = new char*[ 2 ] ;
+
+	Mod.mod_values[ 0 ] = strdup( p_Value.mb_str(wxConvUTF8) ) ;
+	Mod.mod_values[ 1 ] = NULL ;
+
+	Mods[ 0 ] = &Mod ;
+	Mods[ 1 ] = NULL ;
+
+	m_Err = ldap_modify_ext_s( m_LDAP, p_Dn.mb_str(wxConvUTF8), Mods, NULL, NULL );
+
+	free( Mod.mod_type );
+	free( Mod.mod_values[ 0 ] );
+	delete []Mod.mod_values ;
+
+	return m_Err ;
+}
+
+int LdapClass::ModifyAttributeValue( const wxString& p_Dn, const wxString& p_AttributeName, const berval& p_Value )
+{
+	LDAPMod 	Mod ;
+	LDAPMod* 	Mods[ 2 ] ;
+
+	Mod.mod_op = LDAP_MOD_REPLACE | LDAP_MOD_BVALUES;
+	Mod.mod_type = strdup( p_AttributeName.mb_str(wxConvUTF8) ) ;
+	Mod.mod_bvalues = new berval*[ 2 ] ;
+
+	Mod.mod_bvalues[ 0 ] = ( berval* )&p_Value ;
+	Mod.mod_bvalues[ 1 ] = NULL ;
+
+	Mods[ 0 ] = &Mod ;
+	Mods[ 1 ] = NULL ;
+
+	m_Err = ldap_modify_ext_s( m_LDAP, p_Dn.mb_str(wxConvUTF8), Mods, NULL, NULL );
+
+	free( Mod.mod_type );
+
+	delete []Mod.mod_bvalues ;
+
+	return m_Err ;
+}
+
 int LdapClass::AddAttributeValue( const wxString& p_Dn, const wxString& p_AttributeName, const wxString& p_Value )
 {
 	
