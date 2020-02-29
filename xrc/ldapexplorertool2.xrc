@@ -729,7 +729,7 @@
                         <object class="wxListBox" name="attributes_list_box">
                             <content>
                             </content>
-                            <size>175, 75</size>
+                            <size>250, 125</size>
                             <style>wxLB_SINGLE|wxLB_NEEDED_SB</style>
                         </object>
                     </object>
@@ -742,7 +742,7 @@
                     <object class="sizeritem">
                         <flag>wxFIXED_MINSIZE</flag>
                         <object class="wxTextCtrl" name="attribute_text_ctrl">
-                            <size>175, 35</size>
+                            <size>250, 35</size>
                         </object>
                     </object>
                     <object class="sizeritem">
@@ -754,7 +754,7 @@
                     <object class="sizeritem">
                         <flag>wxFIXED_MINSIZE</flag>
                         <object class="wxTextCtrl" name="value_text_ctrl">
-                            <size>175, 35</size>
+                            <size>250, 35</size>
                         </object>
                     </object>
                 </object>
@@ -1001,7 +1001,7 @@
                     <object class="sizeritem">
                         <flag>wxFIXED_MINSIZE</flag>
                         <object class="wxStaticText" name="label_28">
-                            <label>Attribute( when schema\nis unavailable)</label>
+                            <label>\t\t\tAttribute (manual)</label>
                         </object>
                     </object>
                     <object class="sizeritem">

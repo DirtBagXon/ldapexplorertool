@@ -10,7 +10,8 @@ class Attribute_Add_Dlg : public wxDialog
 {
 	public:
 //		Attribute_Add_Dlg();
-		Attribute_Add_Dlg( wxWindow* p_Parent, const wxString& p_Dn, const wxString& p_ObjectClass, SchemaUtil& p_Ldap ) ;
+		Attribute_Add_Dlg( wxWindow* p_Parent, const wxString& p_Dn, wxArrayString p_ObjectClasses, SchemaUtil& p_Ldap ) ;
+		static int CompareStringNoCase(const wxString& first, const wxString& second) ;
 
 		
 	protected :

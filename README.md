@@ -19,13 +19,13 @@ wxWidget 3.0 environment.
 
 ### Licence
 
-**LDAPExplorerTool is licensed under BSD license.**
+LDAPExplorerTool was licensed under the BSD license by the original author.
 
-Required packages for..
+### Required libraries
 
-    Binaries: libwxgtk3.0-0v5 wx-common libldap-common
+    Binary: libwxgtk3.0-0v5 wx-common libldap-common
 
-    Build: libwxbase3.0-dev libwxgtk3.0-dev wx-common wx3.0-headers libldap2-dev
+    Build:  g++ make libwxbase3.0-dev libwxgtk3.0-dev wx-common wx3.0-headers libldap2-dev
 
 ### Build
 

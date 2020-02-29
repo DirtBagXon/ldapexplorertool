@@ -26,12 +26,15 @@ EVT_BUTTON( XRCID( "button_save" ), Attribute_Add_Dlg::OnSave )
 END_EVENT_TABLE()
 
 
-
-Attribute_Add_Dlg::Attribute_Add_Dlg( wxWindow* p_Parent, const wxString& p_Dn, const wxString& p_ObjectClass, SchemaUtil& p_Ldap )
+int Attribute_Add_Dlg::CompareStringNoCase(const wxString& first, const wxString& second)
 {
-	SetEscapeId( XRCID("button_cancel") );
+	return first.CmpNoCase(second);
+}
 
+Attribute_Add_Dlg::Attribute_Add_Dlg( wxWindow* p_Parent, const wxString& p_Dn, wxArrayString p_ObjectClasses, SchemaUtil& p_Ldap )
+{
 	int	Err ;
+	SetEscapeId( XRCID("button_cancel") );
 	wxXmlResource::Get()->LoadDialog( this, p_Parent, wxT( "attribute_add" ) );
 	InitControls();
 	m_Ldap = &p_Ldap ;
@@ -45,15 +48,23 @@ Attribute_Add_Dlg::Attribute_Add_Dlg( wxWindow* p_Parent, const wxString& p_Dn, 
 	else
 	{
 		SetManual( false );
-		wxArrayString	MayAt ;
-		
-		m_Ldap->GetMAYAttributeTypes( p_ObjectClass, MayAt );
-	
+		wxArrayString MayResults ;
 		attributes_list_box->Clear();
-		attributes_list_box->InsertItems( MayAt, 0 );
+
+		for( int i = 0; i < p_ObjectClasses.Count(); i++ ) {
+
+			wxArrayString MayAt = {};
+			m_Ldap->GetMAYAttributeTypes( p_ObjectClasses.Item(i), MayAt );
+
+			for ( int j = 0; j < MayAt.Count(); j++ )
+			{
+				MayResults.Add(MayAt.Item(j));
+			}
+		}
+
+		MayResults.Sort(CompareStringNoCase);
+		attributes_list_box->InsertItems( MayResults, 0 );
 	}
-	
-	
 }
 
 void Attribute_Add_Dlg::InitControls()

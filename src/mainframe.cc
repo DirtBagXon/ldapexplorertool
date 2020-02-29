@@ -445,6 +445,7 @@ void MainFrame::Left_Display( wxTreeItemId p_ParentId, const wxString& p_Url )
 		
 		wxTreeItemId NewId = left_tree_ctrl->AppendItem( p_ParentId, Entry.GetEndOfDn() );
 		left_tree_ctrl->SetItemData( NewId, new LDAPItemData( Entry.GetDn() ) );
+		left_tree_ctrl->Expand( NewId );
 	}
 	m_Ldap.CloseSearch( Id );
 }
@@ -496,6 +497,7 @@ void MainFrame::Right_Display( wxString p_Url )
 			}
 		}
 	}
+	right_tree_ctrl->Expand( NewId );
 	m_Ldap.CloseSearch( Id );	
 }
 /*
@@ -728,11 +730,13 @@ void MainFrame::OnAddAttribute( wxCommandEvent& WXUNUSED( p_Event ) )
 {
 	int Id;
 	int Ret;
+	int Count;
 	wxTreeItemId RootId;
 	LDAPItemData *Data ;
 	LdapEntry	Entry, NewEntry ;
 	LdapAttribute *Attribute ;
 	wxString ObjectClass;
+	wxArrayString ObjectClasses;
 	
 	RootId = right_tree_ctrl->GetRootItem();
 	Data = (LDAPItemData*)right_tree_ctrl->GetItemData( RootId );
@@ -745,13 +749,19 @@ void MainFrame::OnAddAttribute( wxCommandEvent& WXUNUSED( p_Event ) )
 		return;
 	}
 	
-	Ret = m_Ldap.GetEntry( Id, 0, Entry );
+	m_Ldap.GetEntry( Id, 0, Entry );
 	
 	Attribute = Entry.GetAttribute( wxT( "objectclass" ), true );
-	ObjectClass = Attribute->GetValue( 0 ) ;
+	Count = Attribute->CountValues();
+
+	for( int i = 0; i < Count; i++ ) {
+		ObjectClass = Attribute->GetValue( i );
+		ObjectClasses.Add( ObjectClass );
+	}
+
 	m_Ldap.CloseSearch( Id );
 	
-	Attribute_Add_Dlg Dlg( this, Data->m_Value, ObjectClass, m_Ldap );
+	Attribute_Add_Dlg Dlg( this, Data->m_Value, ObjectClasses, m_Ldap );
 	
 	Ret = Dlg.ShowModal();
 	if( Ret == wxID_OK )
