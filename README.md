@@ -1,14 +1,17 @@
-## LDAPExplorerTool2
+## LDAPExplorerTool
 
-LDAPExplorerTool2 by Laurent Ulrich working with wxWidget 3.0 (Debian 10)
+LDAPExplorerTool2 by Laurent Ulrich working with wxWidget 3.0 including several fixes and enhancements.
 
 http://ldaptool.sourceforge.net/
 
-LDAPExplorerTool is a multi-platform LDAP browser and editor (GUI). Tested platforms Debian Linux.
+LDAPExplorerTool is an LDAP browser and editor (GUI). Tested platforms Linux (Debian 9/10).
 
-I was looking for a lightweight LDAP editor for Linux. In the absence of getting the LDAP Admin \
-Linux port working, had an attempt to get this somewhat less featured interface running in a modern \
-wxWidget 3.0 environment. 
+I was searching for a lightweight LDAP editor for Linux. Refusing to install a large IDE for the LDAP Admin \
+Linux port, I attempted to get this somewhat abandoned, lesser featured, application running in a modern \
+environment with wxWidget 3.0. It is now operating in a manner that is usable and remains lightweight.
+
+This editor/browser offers a fairly raw interface into the world of LDAP, objectClasses and schemas. \
+Some understanding of these topics is beneficial, or this utility can be a great tool for learning them.
 
 ### Main features listed from original site:
 
@@ -17,9 +20,10 @@ wxWidget 3.0 environment.
 *Create/edit/remove LDAP objects*\
 *Multivalue support (including edition)*
 
-### Licence
+### Licencing
 
-LDAPExplorerTool was licensed under the BSD license by the original author.
+Original LDAPExplorerTool code was licensed under the BSD license by the author. \
+Modifications within this repository are released under GPL-2.
 
 ### Required libraries
 

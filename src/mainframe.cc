@@ -424,7 +424,8 @@ void MainFrame::Left_Display( wxTreeItemId p_ParentId, const wxString& p_Url )
 {
 	int Id;
 	int Ret;
-	
+	wxSortedArrayString DN;
+	wxSortedArrayString EndOfDn;
 	
 	Ret = m_Ldap.Search( Id, p_Url, LDAP_SCOPE_ONELEVEL, wxT( "objectclass=*" ), 
 	NULL, false, LF_NONE );
@@ -442,12 +443,18 @@ void MainFrame::Left_Display( wxTreeItemId p_ParentId, const wxString& p_Url )
 		{
 			::wxMessageBox( m_Ldap.GetErrorStr(), _("Error"), wxOK|wxICON_ERROR );
 		}
-		
-		wxTreeItemId NewId = left_tree_ctrl->AppendItem( p_ParentId, Entry.GetEndOfDn() );
-		left_tree_ctrl->SetItemData( NewId, new LDAPItemData( Entry.GetDn() ) );
-		left_tree_ctrl->Expand( NewId );
+
+		EndOfDn.Add(Entry.GetEndOfDn());
+		DN.Add(Entry.GetDn());
 	}
+
 	m_Ldap.CloseSearch( Id );
+
+	for ( int j = 0; j < EndOfDn.Count(); j++ )
+	{
+		wxTreeItemId NewId = left_tree_ctrl->AppendItem( p_ParentId, EndOfDn.Item( j ) );
+		left_tree_ctrl->SetItemData( NewId, new LDAPItemData( DN.Item( j ) ) );
+	}
 }
 
 
@@ -497,6 +504,7 @@ void MainFrame::Right_Display( wxString p_Url )
 			}
 		}
 	}
+	right_tree_ctrl->SortChildren( NewId );
 	right_tree_ctrl->Expand( NewId );
 	m_Ldap.CloseSearch( Id );	
 }

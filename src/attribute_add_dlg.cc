@@ -26,11 +26,6 @@ EVT_BUTTON( XRCID( "button_save" ), Attribute_Add_Dlg::OnSave )
 END_EVENT_TABLE()
 
 
-int Attribute_Add_Dlg::CompareStringNoCase(const wxString& first, const wxString& second)
-{
-	return first.CmpNoCase(second);
-}
-
 Attribute_Add_Dlg::Attribute_Add_Dlg( wxWindow* p_Parent, const wxString& p_Dn, wxArrayString p_ObjectClasses, SchemaUtil& p_Ldap )
 {
 	int	Err ;
@@ -48,22 +43,15 @@ Attribute_Add_Dlg::Attribute_Add_Dlg( wxWindow* p_Parent, const wxString& p_Dn, 
 	else
 	{
 		SetManual( false );
-		wxArrayString MayResults ;
+		wxSortedArrayString MayAt ;
 		attributes_list_box->Clear();
 
 		for( int i = 0; i < p_ObjectClasses.Count(); i++ ) {
 
-			wxArrayString MayAt = {};
 			m_Ldap->GetMAYAttributeTypes( p_ObjectClasses.Item(i), MayAt );
-
-			for ( int j = 0; j < MayAt.Count(); j++ )
-			{
-				MayResults.Add(MayAt.Item(j));
-			}
 		}
 
-		MayResults.Sort(CompareStringNoCase);
-		attributes_list_box->InsertItems( MayResults, 0 );
+		attributes_list_box->InsertItems( MayAt, 0 );
 	}
 }
 
