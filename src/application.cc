@@ -25,6 +25,8 @@
 	#define XRC_DIR	wxT("./")
 #endif
 
+extern void InitXmlResource();
+
 IMPLEMENT_APP(Application)
 
 Application::Application()
@@ -36,15 +38,12 @@ Application::~Application()
 bool Application::OnInit()
 {
 
-	wxConfig *ConfigFile = NULL ;
 	wxString XrcFile = XRC_DIR;
 	wxString ConfFile ;
 
 	wxCmdLineParser CmdParser( argc, argv );
 	
 	CmdParser.AddOption( wxT("c"), wxT("config-file"), wxT("Configuration file to load") );
-	CmdParser.AddOption( wxT("xrc"), wxT("xrc-dir"), wxT("Directory with Interface definition file to load") );
-
 	CmdParser.AddSwitch( wxT("h"), wxT("help"), wxT("Usage of LDAPExplorerTool") );
 
 	if( CmdParser.Parse() == 0 )
@@ -57,23 +56,16 @@ bool Application::OnInit()
 		}
 		if( !CmdParser.Found( wxT("c"), &ConfFile ) )
 		{
-			ConfFile = wxT(".ldapexplorertool2");
+			ConfFile = wxT(".ldapexplorertool");
 		}
 		CmdParser.Found( wxT("xrc"), &XrcFile );
 	}
-	
-	if( XrcFile.Last() != wxT('/') )
-		XrcFile.Append( wxT( '/' ) );
-	XrcFile.Append( wxT("ldapexplorertool2.xrc") );
+
+	wxXmlResource::Get()->InitAllHandlers();
+	InitXmlResource();
 
 	wxImage::AddHandler(new wxPNGHandler);
-	
-	wxXmlResource::Get()->InitAllHandlers();
-	wxXmlResource::Get()->Load(XrcFile);
-	
-	ConfigFile = new wxConfig( wxT("ldapexplorertool2"),wxT("Laurent Ulrich"), ConfFile );
-	wxConfig::Set( ConfigFile );
-	
+
 	MainFrame *frame = new MainFrame();
 	frame->Show(true);
 	return true;

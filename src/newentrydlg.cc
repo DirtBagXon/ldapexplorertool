@@ -84,7 +84,7 @@ void NewEntryDlg::OnObjectClassChanged( wxCommandEvent& p_Event )
 {
 	wxString ObjectClass = objectclass_combo_box->GetValue() ;
 	
-	wxArrayString	MustAt,MayAt ;
+	wxSortedArrayString	MustAt,MayAt ;
 	
 	m_Ldap->GetMUSTAttributeTypes( ObjectClass, MustAt );
 	m_Ldap->GetMAYAttributeTypes( ObjectClass, MayAt );

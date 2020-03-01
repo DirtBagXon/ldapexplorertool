@@ -33,22 +33,17 @@ Modifications within this repository are released under GPL-2.
 
 ### Build
 
+    wxrc xrc/ldapexplorertool2.xrc -c -o src/resource.cc (optional)
+
     make
     sudo make install
 
 ### Usage
 
-The binary expects the `.xrc` file in `/usr/share/ldapexplorertool2/ldapexplorertool2.xrc` by default, \
-or it will error out. The `make install` will remedy this. However you can execute a local copy by giving \
-a `directory` name containing the `ldapexplorertool2.xrc` file via the following argument:
+Available command line options:
 
-    ldapexplorertool2 -xrc <dir>
-
-Other available command line options:
-
-    Usage: ldapexplorertool2 [-c <str>] [-xrc <str>] [-h]
+    Usage: ldapexplorertool [-c <str>] [-h]
      -c, --config-file=<str>       Configuration file to load
-     -xrc, --xrc-dir=<str>         Directory with interface definition file to load
      -h, --help                    Usage of LDAPExplorerTool
 
 

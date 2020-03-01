@@ -44,14 +44,14 @@ SchemaDlg::SchemaDlg( wxWindow* p_Parent, SchemaUtil& p_Ldap )
 }
 void SchemaDlg::FillAttributeTypes( void )
 {
-	wxArrayString Attributes;
+	wxSortedArrayString Attributes;
 	
 	m_Ldap->GetAttributeTypes( Attributes );
 	attributes_listbox->Append( Attributes );
 }
 void SchemaDlg::FillObjectClasses( void )
 {
-	wxArrayString ObjectClasses;
+	wxSortedArrayString ObjectClasses;
 	m_Ldap->GetObjectClasses( ObjectClasses );
 	objectclasses_listbox->Append( ObjectClasses );
 }

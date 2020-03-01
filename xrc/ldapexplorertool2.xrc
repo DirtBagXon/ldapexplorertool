@@ -227,7 +227,7 @@
                             <object class="sizeritem">
                                 <flag>wxFIXED_MINSIZE</flag>
                                 <object class="wxButton" name="test_server_button">
-                                    <label>Test connection</label>
+                                    <label>Test Connection</label>
                                 </object>
                             </object>
                             <object class="spacer">
@@ -339,7 +339,7 @@
                             <object class="sizeritem">
                                 <flag>wxALIGN_CENTER_VERTICAL|wxFIXED_MINSIZE</flag>
                                 <object class="wxStaticText" name="label_7">
-                                    <label>(TLS on Main Server Port)</label>
+                                    <label>(TLS: Main Server Port)</label>
                                     <style>wxALIGN_CENTER</style>
                                 </object>
                             </object>
@@ -358,7 +358,7 @@
                             <object class="sizeritem">
                                 <flag>wxFIXED_MINSIZE</flag>
                                 <object class="wxButton" name="basedn_guess_button">
-                                    <label>Detect Value</label>
+                                    <label>Detect</label>
                                 </object>
                             </object>
                             <object class="spacer">
@@ -368,7 +368,7 @@
                             <object class="sizeritem">
                                 <flag>wxFIXED_MINSIZE</flag>
                                 <object class="wxButton" name="test_connection_button">
-                                    <label>Test connection</label>
+                                    <label>Test Connection</label>
                                 </object>
                             </object>
                             <object class="spacer">
@@ -490,7 +490,7 @@
                             <object class="sizeritem">
                                 <flag>wxFIXED_MINSIZE</flag>
                                 <object class="wxStaticText" name="label_23">
-                                    <label>\n(Access via schema only)</label>
+                                    <label>\n(Schema only)</label>
                                 </object>
                             </object>
                         </object>

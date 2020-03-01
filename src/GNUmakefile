@@ -1,10 +1,10 @@
 
 include ../GNUmakefile.config
 
-CPPFLAGS=$(WX_INC) $(LDAP_INC) -DNDEBUG -DLDAP_DEPRECATED -D'XRC_DIR=wxT("$(XRC_DIR)")'
+CPPFLAGS=$(WX_INC) $(LDAP_INC) -DNDEBUG -DLDAP_DEPRECATED
 LDLIBS=$(WX_LIB) $(LDAP_LIB) -lstdc++
 
-OBJS = application.o mainframe.o configurationdlg.o config_fct.o newentrydlg.o attribute_add_dlg.o schemadlg.o\
+OBJS = resource.o application.o mainframe.o configurationdlg.o config_fct.o newentrydlg.o attribute_add_dlg.o schemadlg.o\
 	config_manage_dlg.o searchdlg.o ldapclass.o ldapentry.o schema.o
 
 $(TOOLNAME): $(OBJS)
