@@ -490,7 +490,7 @@
                             <object class="sizeritem">
                                 <flag>wxFIXED_MINSIZE</flag>
                                 <object class="wxStaticText" name="label_23">
-                                    <label>\n(Schema only)</label>
+                                    <label>\n(Schema Required)</label>
                                 </object>
                             </object>
                         </object>
