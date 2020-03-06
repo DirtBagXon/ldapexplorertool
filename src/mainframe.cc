@@ -643,7 +643,7 @@ void MainFrame::OnRenameEntry( wxCommandEvent& WXUNUSED( p_Event ) )
 		if ( Pos == -1 )
 		{
 			Data->m_Value = NewRDn ;
-			::wxMessageBox ( wxT( "test1" ) );
+			::wxMessageBox ( wxT( "Assigned new RDN as absolute" ) );
 		}
 		else
 		{
@@ -757,14 +757,23 @@ void MainFrame::OnAddAttribute( wxCommandEvent& WXUNUSED( p_Event ) )
 		return;
 	}
 	
-	m_Ldap.GetEntry( Id, 0, Entry );
+	if( !m_Ldap.GetEntry( Id, 0, Entry ))
+	{
+		::wxMessageBox( m_Ldap.GetErrorStr(), Data->m_Value );
+		m_Ldap.CloseSearch( Id );
+		return;
+	}
 	
 	Attribute = Entry.GetAttribute( wxT( "objectclass" ), true );
-	Count = Attribute->CountValues();
 
-	for( int i = 0; i < Count; i++ ) {
-		ObjectClass = Attribute->GetValue( i );
-		ObjectClasses.Add( ObjectClass );
+	if( Attribute != NULL )
+	{
+		Count = Attribute->CountValues();
+
+		for( int i = 0; i < Count; i++ ) {
+			ObjectClass = Attribute->GetValue( i );
+			ObjectClasses.Add( ObjectClass );
+		}
 	}
 
 	m_Ldap.CloseSearch( Id );

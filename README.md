@@ -1,17 +1,26 @@
 ## LDAPExplorerTool
 
-LDAPExplorerTool2 by Laurent Ulrich working with wxWidget 3.0 including several fixes and enhancements.
+LDAPExplorerTool2 by Laurent Ulrich working with wxWidget 3.0/3.1, includes several fixes and enhancements.
 
 http://ldaptool.sourceforge.net/
 
-LDAPExplorerTool is an LDAP browser and editor (GUI). Tested platforms Linux (Debian 9/10).
+LDAPExplorerTool is an LDAP browser and editor (GUI).
 
-I was searching for a lightweight LDAP editor for Linux. Refusing to install a large IDE for the LDAP Admin \
-Linux port, I attempted to get this somewhat abandoned, lesser featured, application running in a modern \
-environment with wxWidget 3.0. It is now operating in a manner that is usable and remains lightweight.
+Tested linux platforms:
 
-This editor/browser offers a fairly raw interface into the world of LDAP, objectClasses and schemas. \
-Some understanding of these topics is beneficial, or this utility can be a great tool for learning them.
+    Debian 9  - wxWidgets 3.0.2 / g++ 6.3.0 / gtk2
+    Debian 10 - wxWidgets 3.0.4 / g++ 8.3.0 / gtk2
+    Debian 10 - wxWidgets 3.1.3 / g++ 8.3.0 / gtk3
+
+I was searching for a lightweight LDAP editor for Linux. Refused to install the large IDE used for the Linux \
+port of LDAP Admin. So sat down to adapt this abandoned, lesser featured, LDAP application to run on a modern \
+Linux environment. It is now a usable and lightweight application on modern Linux platforms.
+
+I do not have access to Windows build environments, so currently this is not ported, or supported, but I am \
+happy to receive pull requests for either platform.
+
+This editor/browser offers a fairly raw interface into the world of LDAP objectClasses and schemas. \
+Some understanding of these topics is beneficial, but this utility can be a great tool for learning LDAP.
 
 ### Main features listed from original site:
 
@@ -20,7 +29,7 @@ Some understanding of these topics is beneficial, or this utility can be a great
 *Create/edit/remove LDAP objects*\
 *Multivalue support (including edition)*
 
-### Licencing
+### Licensing
 
 Original LDAPExplorerTool code was licensed under the BSD license by the author. \
 Modifications within this repository are released under GPL-2.
@@ -31,9 +40,12 @@ Modifications within this repository are released under GPL-2.
 
     Build:  g++ make libwxbase3.0-dev libwxgtk3.0-dev wx-common wx3.0-headers libldap2-dev
 
+- *wxWidgets-3.1.3.tar.bz2* was used for 3.1 testing.
+
+
 ### Build
 
-    wxrc xrc/ldapexplorertool2.xrc -c -o src/resource.cc (optional)
+    wxrc xrc/ldapexplorertool.xrc -c -o src/resource.cc
 
     make
     sudo make install

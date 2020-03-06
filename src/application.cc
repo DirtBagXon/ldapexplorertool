@@ -21,10 +21,6 @@
 #include "application.h"
 
 
-#ifndef XRC_DIR
-	#define XRC_DIR	wxT("./")
-#endif
-
 extern void InitXmlResource();
 
 IMPLEMENT_APP(Application)
@@ -37,8 +33,6 @@ Application::~Application()
 }
 bool Application::OnInit()
 {
-
-	wxString XrcFile = XRC_DIR;
 	wxString ConfFile ;
 
 	wxCmdLineParser CmdParser( argc, argv );
@@ -58,7 +52,6 @@ bool Application::OnInit()
 		{
 			ConfFile = wxT(".ldapexplorertool");
 		}
-		CmdParser.Found( wxT("xrc"), &XrcFile );
 	}
 
 	wxXmlResource::Get()->InitAllHandlers();

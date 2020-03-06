@@ -38,7 +38,7 @@
             <orient>wxVERTICAL</orient>
             <object class="sizeritem">
                 <option>1</option>
-                <flag>wxALIGN_CENTER|wxALL|wxEXPAND</flag>
+                <flag>wxALL|wxEXPAND</flag>
                 <border>1</border>
                 <object class="wxSplitterWindow" name="window_1">
 			<min_pane_size>20</min_pane_size>
@@ -339,7 +339,7 @@
                             <object class="sizeritem">
                                 <flag>wxALIGN_CENTER_VERTICAL|wxFIXED_MINSIZE</flag>
                                 <object class="wxStaticText" name="label_7">
-                                    <label>(TLS: Main Server Port)</label>
+                                    <label></label>
                                     <style>wxALIGN_CENTER</style>
                                 </object>
                             </object>
@@ -616,7 +616,7 @@
                 <option>1</option>
                 <flag>wxALL|wxEXPAND</flag>
                 <object class="wxStaticBoxSizer">
-                    <label>Actions</label>
+                    <label> Actions</label>
                     <orient>wxVERTICAL</orient>
                     <object class="sizeritem">
                         <object class="wxButton" name="button_new">
@@ -635,7 +635,7 @@
                     </object>
                     <object class="sizeritem">
                         <object class="wxButton" name="button_delete">
-                            <label>Delete...</label>
+                            <label>Delete</label>
                         </object>
                     </object>
                 </object>
