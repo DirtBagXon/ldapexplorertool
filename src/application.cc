@@ -33,11 +33,8 @@ Application::~Application()
 }
 bool Application::OnInit()
 {
-	wxString ConfFile ;
-
 	wxCmdLineParser CmdParser( argc, argv );
 	
-	CmdParser.AddOption( wxT("c"), wxT("config-file"), wxT("Configuration file to load") );
 	CmdParser.AddSwitch( wxT("h"), wxT("help"), wxT("Usage of LDAPExplorerTool") );
 
 	if( CmdParser.Parse() == 0 )
@@ -47,10 +44,6 @@ bool Application::OnInit()
 		{
 			CmdParser.Usage();
 			return false;
-		}
-		if( !CmdParser.Found( wxT("c"), &ConfFile ) )
-		{
-			ConfFile = wxT(".ldapexplorertool");
 		}
 	}
 
@@ -62,5 +55,4 @@ bool Application::OnInit()
 	MainFrame *frame = new MainFrame();
 	frame->Show(true);
 	return true;
-
 }

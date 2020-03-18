@@ -38,9 +38,7 @@ BEGIN_EVENT_TABLE( MainFrame, wxFrame )
     EVT_MENU(	XRCID( "open_configuration" ), MainFrame::OnOpenConnection )
     EVT_MENU(	XRCID( "delete_configuration" ), MainFrame::OnDeleteConnection )
     EVT_MENU(	XRCID( "schema_view" ), MainFrame::OnViewSchema )
-
     EVT_MENU(	XRCID( "left_popup_add" ), MainFrame::OnAddEntry )
-    
     EVT_MENU(	XRCID( "left_popup_copy" ), MainFrame::OnCopyEntry )
     EVT_MENU(	XRCID( "left_popup_rename" ), MainFrame::OnRenameEntry )
     EVT_MENU(	XRCID( "left_popup_delete" ), MainFrame::OnDeleteEntry )
@@ -54,7 +52,7 @@ BEGIN_EVENT_TABLE( MainFrame, wxFrame )
     EVT_TREE_SEL_CHANGED(XRCID( "left_tree_ctrl" ), MainFrame::OnLeftSelectionChanged ) 
     EVT_TREE_SEL_CHANGED(XRCID( "right_tree_ctrl" ), MainFrame::OnRightSelectionChanged ) 
     EVT_TREE_ITEM_ACTIVATED(XRCID( "left_tree_ctrl" ), MainFrame::OnLeftSelectionChanged )
-	EVT_TREE_ITEM_RIGHT_CLICK( XRCID( "left_tree_ctrl" ), MainFrame::OnLeft_PopupMenu )
+    EVT_TREE_ITEM_RIGHT_CLICK( XRCID( "left_tree_ctrl" ), MainFrame::OnLeft_PopupMenu )
     EVT_TREE_ITEM_RIGHT_CLICK( XRCID( "right_tree_ctrl" ), MainFrame::OnRight_PopupMenu )    
 END_EVENT_TABLE()
 
@@ -417,6 +415,7 @@ void MainFrame::OnConnect( const wxString& p_Config )
 	wxTreeItemId RootID = left_tree_ctrl->AddRoot( wxString::Format( _("Root-%s"), Config.basedn.c_str() ) );
 	left_tree_ctrl->SetItemData( RootID, new LDAPItemData( Config.basedn ) );
 	Left_Display( RootID, Config.basedn );
+	left_tree_ctrl->Expand(RootID);
 
 }
 
@@ -433,7 +432,6 @@ void MainFrame::Left_Display( wxTreeItemId p_ParentId, const wxString& p_Url )
 	{
 		return ;
 	}
-	
 
 	int NbEntries = m_Ldap.GetEntryCount( Id ) ;
 	for( int i = 0; i < NbEntries; i++ )
@@ -503,29 +501,13 @@ void MainFrame::Right_Display( wxString p_Url )
 				right_tree_ctrl->SetItemData( AttValId, new ValueItemData( STRING_VALUES ) );
 			}
 		}
+		right_tree_ctrl->SortChildren( ItemId );
 	}
 	right_tree_ctrl->SortChildren( NewId );
 	right_tree_ctrl->Expand( NewId );
 	m_Ldap.CloseSearch( Id );	
 }
-/*
-void MainFrame::GetConfigurations( wxArrayString& p_List )
-{
-	wxString 		ConfigurationName ;
-	long			Index ;
-	bool			bRet ;
 
-	wxConfig::Get()->SetPath( wxT( "/configurations" ) );
-	
-	bRet = wxConfig::Get()->GetFirstGroup( ConfigurationName, Index );
-	while( bRet )
-	{
-		p_List.Add( ConfigurationName );
-		bRet = wxConfig::Get()->GetNextGroup( ConfigurationName, Index );
-	}
-	
-}
-*/
 void MainFrame::OnAddEntry( wxCommandEvent& WXUNUSED( p_Event ) )
 {
 	wxTreeItemId Id ;
