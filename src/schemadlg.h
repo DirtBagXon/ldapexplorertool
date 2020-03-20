@@ -13,6 +13,8 @@ class SchemaDlg : public wxDialog
 	protected :		
 		void OnObjectClassSelected( wxCommandEvent& p_Event );
 		void OnAttributeSelected( wxCommandEvent& p_Event );
+		void OnObjectClassSelectionChanged( wxTreeEvent& WXUNUSED( p_Event ) );
+		void OnAttributeSelectionChanged( wxTreeEvent& WXUNUSED( p_Event ) );
 
 		SchemaUtil *m_Ldap;
 

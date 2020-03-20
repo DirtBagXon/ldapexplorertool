@@ -71,7 +71,6 @@ void MainFrame::OnQuit( wxCommandEvent& WXUNUSED( p_Event ) )
     Close(true);
 }
 
-
 void MainFrame::OnViewSchema( wxCommandEvent& WXUNUSED( p_Event ) )
 {
 	int	Ret;
@@ -216,10 +215,13 @@ void MainFrame::OnLeftSelectionChanged( wxTreeEvent& p_Event )
 			Left_Display( Id, data->m_Value );
 		}
 	}
+	left_tree_ctrl->Toggle( Id );
 }
 
-void MainFrame::OnRightSelectionChanged( wxTreeEvent& WXUNUSED( p_Event ) )
+void MainFrame::OnRightSelectionChanged( wxTreeEvent& p_Event )
 {
+	wxTreeItemId Id = p_Event.GetItem() ;
+	right_tree_ctrl->Expand( Id );
 }
 
 void MainFrame::OnRight_PopupMenu( wxTreeEvent& p_Event )
@@ -415,7 +417,7 @@ void MainFrame::OnConnect( const wxString& p_Config )
 	wxTreeItemId RootID = left_tree_ctrl->AddRoot( wxString::Format( _("Root-%s"), Config.basedn.c_str() ) );
 	left_tree_ctrl->SetItemData( RootID, new LDAPItemData( Config.basedn ) );
 	Left_Display( RootID, Config.basedn );
-	left_tree_ctrl->Expand(RootID);
+	left_tree_ctrl->Expand( RootID );
 
 }
 

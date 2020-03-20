@@ -39,12 +39,14 @@ bool Application::OnInit()
 
 	if( CmdParser.Parse() == 0 )
 	{
-		
 		if( CmdParser.Found( wxT("h") ) )
 		{
 			CmdParser.Usage();
 			return false;
 		}
+
+	} else {
+		exit(1);
 	}
 
 	wxXmlResource::Get()->InitAllHandlers();

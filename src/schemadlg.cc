@@ -22,7 +22,10 @@
 BEGIN_EVENT_TABLE( SchemaDlg, wxDialog )
 EVT_LISTBOX(XRCID( "objectclasses_listbox" ), SchemaDlg::OnObjectClassSelected) 
 EVT_LISTBOX(XRCID( "attributes_listbox" ), SchemaDlg::OnAttributeSelected) 
+EVT_TREE_SEL_CHANGED(XRCID( "objectclass_tree_ctrl" ), SchemaDlg::OnObjectClassSelectionChanged )
+EVT_TREE_SEL_CHANGED(XRCID( "attributes_tree_ctrl" ), SchemaDlg::OnAttributeSelectionChanged )
 END_EVENT_TABLE()
+
 /*
 long char_array_size( char ** p_array )
 {
@@ -42,6 +45,19 @@ SchemaDlg::SchemaDlg( wxWindow* p_Parent, SchemaUtil& p_Ldap )
 	FillObjectClasses();
 	FillAttributeTypes();
 }
+
+void SchemaDlg::OnObjectClassSelectionChanged( wxTreeEvent& p_Event )
+{
+        wxTreeItemId Id = p_Event.GetItem() ;
+        objectclass_tree_ctrl->Expand( Id );
+}
+
+void SchemaDlg::OnAttributeSelectionChanged( wxTreeEvent& p_Event )
+{
+        wxTreeItemId Id = p_Event.GetItem() ;
+        attributes_tree_ctrl->Expand( Id );
+}
+
 void SchemaDlg::FillAttributeTypes( void )
 {
 	wxSortedArrayString Attributes;
