@@ -50,6 +50,16 @@ Modifications within this repository are released under GPL-2.
     make
     sudo make install
 
+#### Ubuntu 20.04 build instructions
+
+1. `git clone git@github.com:DirtBagXon/ldapexplorertool.git`
+1. `cd ldapexplorertool/`
+1. `sudo apt install wx-common libldap-common libldap2-dev libwxgtk3.0-gtk3-dev`
+1. `wxrc xrc/ldapexplorertool.xrc -c -o src/resource.cc`
+1. `make`
+1. `sudo make install`
+1. `./ldapexplorertool`
+
 ### Usage
 
 Available command line options:
