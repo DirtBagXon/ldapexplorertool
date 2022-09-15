@@ -205,7 +205,7 @@ void MainFrame::OnEditConnection( wxCommandEvent& WXUNUSED( p_Event ) )
 void MainFrame::OnLeftSelectionChanged( wxTreeEvent& p_Event )
 {
 	wxTreeItemId Id = p_Event.GetItem() ;
-	if( Id > 0 )
+	if( Id.IsOk() )
 	{
 		LDAPItemData* data = ( LDAPItemData* )left_tree_ctrl->GetItemData( p_Event.GetItem() ) ;
 
